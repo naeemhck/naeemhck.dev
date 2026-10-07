@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NaeemHCK — Independent Developer Building AI-Powered Products</title>
+<meta name="description" content="NaeemHCK is an independent developer building AI-powered web products: conversational AI tools, cinematic web experiences, and open-source projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e14; --bg2:#0e141d; --card:#111926; --line:#1e2a3a;
+    --txt:#e8eef5; --mut:#8b98a9; --acc:#4ade80; --acc2:#22d3ee;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .mono{font-family:'JetBrains Mono',monospace}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,14,20,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;font-size:18px;letter-spacing:-.5px}
+  .logo span{color:var(--acc)}
+  .navlinks{display:flex;gap:28px;font-size:14px;color:var(--mut)}
+  .navlinks a:hover{color:var(--txt)}
+  .navcta{font-size:14px;font-weight:600;border:1px solid var(--line);padding:8px 18px;border-radius:8px;transition:.2s}
+  .navcta:hover{border-color:var(--acc);color:var(--acc)}
+  /* hero */
+  header{padding:168px 0 96px;position:relative;overflow:hidden}
+  header::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(74,222,128,.09),transparent 70%);pointer-events:none}
+  .kicker{font-size:13px;color:var(--acc);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+  h1{font-size:clamp(40px,6vw,68px);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:24px}
+  h1 .grad{background:linear-gradient(120deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:19px;color:var(--mut);max-width:620px;margin-bottom:40px}
+  .ctas{display:flex;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;padding:13px 28px;border-radius:10px;transition:.2s}
+  .btn.primary{background:var(--acc);color:#06130b}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(74,222,128,.25)}
+  .btn.ghost{border:1px solid var(--line);color:var(--txt)}
+  .btn.ghost:hover{border-color:var(--acc)}
+  .stats{display:flex;gap:48px;margin-top:72px;flex-wrap:wrap}
+  .stat b{display:block;font-size:28px;font-weight:800;letter-spacing:-1px}
+  .stat span{font-size:13px;color:var(--mut)}
+  /* sections */
+  section{padding:88px 0;border-top:1px solid var(--line)}
+  .seclabel{font-size:13px;color:var(--acc);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+  h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+  .secsub{color:var(--mut);max-width:640px;margin-bottom:48px;font-size:17px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;transition:.25s}
+  .card:hover{transform:translateY(-4px);border-color:#2c3d52}
+  .card .tag{font-size:12px;color:var(--acc2);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+  .card h3{font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-.3px}
+  .card p{font-size:14.5px;color:var(--mut);margin-bottom:18px}
+  .card .links{display:flex;gap:16px;font-size:14px;font-weight:600}
+  .card .links a{color:var(--acc)}
+  .card .links a:hover{text-decoration:underline}
+  .pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(74,222,128,.1);color:var(--acc);border:1px solid rgba(74,222,128,.25);margin-bottom:12px}
+  .pill.soon{background:rgba(34,211,238,.08);color:var(--acc2);border-color:rgba(34,211,238,.25)}
+  /* about */
+  .about{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+  .about p{color:var(--mut);margin-bottom:16px;font-size:16px}
+  .about p b{color:var(--txt)}
+  .facts{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
+  .facts div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .facts div:last-child{border:none}
+  .facts span:first-child{color:var(--mut)}
+  @media(max-width:760px){.about{grid-template-columns:1fr}.navlinks{display:none}}
+  /* contact */
+  .contactbox{background:linear-gradient(135deg,#0e1a12,#0a0e14);border:1px solid rgba(74,222,128,.2);border-radius:18px;padding:56px 48px;text-align:center}
+  .contactbox h2{margin-bottom:12px}
+  .contactbox p{color:var(--mut);margin-bottom:32px}
+  .email{font-size:20px;font-weight:700;color:var(--acc)}
+  footer{padding:40px 0;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo mono" href="#top">naeem<span>hck</span><span style="color:var(--mut)">.dev</span></a>
+    <div class="navlinks">
+      <a href="#focus">Focus</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+    </div>
+    <a class="navcta mono" href="https://github.com/naeemhck" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="kicker mono">// independent developer</div>
+    <h1>Building <span class="grad">AI-powered products</span> for the web.</h1>
+    <p class="lede">NaeemHCK is a one-person studio designing and shipping AI-driven web experiences — from conversational AI tools to cinematic, motion-rich sites. Real projects, shipped publicly, built with modern stacks.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn ghost mono" href="https://github.com/naeemhck" target="_blank" rel="noopener">github.com/naeemhck ↗</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10+</b><span>projects shipped</span></div>
+      <div class="stat"><b>AI × Web</b><span>core focus</span></div>
+      <div class="stat"><b>100%</b><span>open &amp; public work</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="focus">
+  <div class="wrap">
+    <div class="seclabel mono">01 — Focus</div>
+    <h2>What I build</h2>
+    <p class="secsub">Three tracks, one standard: working software, public by default, no placeholders.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="tag mono">AI product engineering</div>
+        <h3>Conversational AI tools</h3>
+        <p>LLM-powered applications with structured outputs, constraint engines, and deterministic business logic — AI where it helps, engineering where it counts.</p>
+      </div>
+      <div class="card">
+        <div class="tag mono">Web experiences</div>
+        <h3>Cinematic websites</h3>
+        <p>Motion-rich, reel-style sites with GSAP, WebGL, and scroll-driven storytelling. Built to feel like footage, not screenshots.</p>
+      </div>
+      <div class="card">
+        <div class="tag mono">Open source</div>
+        <h3>Public by default</h3>
+        <p>UI playgrounds, templates, and experiments published on GitHub for anyone to use, fork, and learn from.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="seclabel mono">02 — Selected work</div>
+    <h2>Shipped &amp; live</h2>
+    <p class="secsub">A selection of public projects. Everything below is real, deployed, and linked.</p>
+    <div class="grid">
+      <div class="card">
+        <span class="pill soon">In development</span>
+        <h3>AI House-Planning Platform</h3>
+        <p>Conversational, constraint-aware house planning for Pakistan: natural-language requirements → 2D floor plans → cost estimates. LLM understands, geometry engine calculates, rule engine enforces local building constraints.</p>
+        <div class="links"><a href="https://github.com/naeemhck" target="_blank" rel="noopener">Follow progress ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="pill">Live</span>
+        <h3>Developer Portfolio</h3>
+        <p>Cinematic single-page portfolio — video intro, pinned scroll scenes, project chapters. Vanilla JS + GSAP + ScrollTrigger, no frameworks.</p>
+        <div class="links"><a href="https://naeemhck.github.io/portfolio/" target="_blank" rel="noopener">Visit live ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="pill">Live</span>
+        <h3>Faletti's Concept Site</h3>
+        <p>Heritage hotel redesign concept: scroll-driven 1880→today narrative, timeline, room discovery. Next.js + Tailwind + Framer Motion, deployed on GitHub Pages.</p>
+        <div class="links"><a href="https://naeemhck.github.io/falettis-concept/" target="_blank" rel="noopener">Visit live ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="pill">Live</span>
+        <h3>Faletti's v3 — WebGL Edition</h3>
+        <p>Rebuilt concept with Origin Kit time-vortex, particle systems, and animated UI primitives. Code-split three.js for performance.</p>
+        <div class="links"><a href="https://naeemhck.github.io/falettis-concept-v3/" target="_blank" rel="noopener">Visit live ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="pill">Open source</span>
+        <h3>UI Component Lab</h3>
+        <p>Playground wiring up daisyUI, Origin Kit, three.js/R3F, React Bits, Animata, and more into one Next.js + Tailwind v4 testbed.</p>
+        <div class="links"><a href="https://github.com/naeemhck" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </div>
+      <div class="card">
+        <span class="pill">Live</span>
+        <h3>Cinematic Hotel Template</h3>
+        <p>Reusable dark-and-gold cinematic hotel site template: full-bleed hero, room picker, floating contact actions — everything in one CONFIG block.</p>
+        <div class="links"><a href="https://github.com/naeemhck" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="seclabel mono">03 — About</div>
+    <h2>One developer, full stack</h2>
+    <div class="about" style="margin-top:32px">
+      <div>
+        <p>I'm <b>Muhammad Naeem</b>, an independent developer working under the <b>NaeemHCK</b> handle. I design and build AI-powered web products end to end — from the model integration layer down to the last easing curve.</p>
+        <p>My current main build is a <b>conversational house-planning platform</b>: an AI that turns plain-language requirements into code-compliant floor plans with live cost estimates. Around it, I ship cinematic web experiences and open-source UI work.</p>
+        <p>Operating principle: <b>never treat every feature as an AI problem</b> — LLMs understand intent, deterministic engines handle geometry, constraints, and money.</p>
+      </div>
+      <div class="facts mono">
+        <div><span>base</span><span>Pakistan · remote</span></div>
+        <div><span>stack</span><span>TypeScript · Python · Next.js · FastAPI</span></div>
+        <div><span>ai</span><span>LLMs · structured output · RAG</span></div>
+        <div><span>motion</span><span>GSAP · three.js · Lenis</span></div>
+        <div><span>status</span><span style="color:var(--acc)">● open for collaboration</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-top:none">
+  <div class="wrap">
+    <div class="contactbox">
+      <div class="seclabel mono">04 — Contact</div>
+      <h2>Let's build something.</h2>
+      <p>For project inquiries, collaboration, or just to talk AI × web — my inbox is open.</p>
+      <a class="email mono" href="mailto:contact@naeemhck.dev">contact@naeemhck.dev</a>
+      <div class="ctas" style="justify-content:center;margin-top:32px">
+        <a class="btn ghost mono" href="https://github.com/naeemhck" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 NaeemHCK — naeemhck.dev</span>
+    <span class="mono">built &amp; shipped by hand</span>
+  </div>
+</footer>
+
+</body>
+</html>
