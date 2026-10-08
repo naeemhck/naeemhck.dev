@@ -110,6 +110,51 @@ h1,h2{font-weight:700;line-height:.98;letter-spacing:-.01em}
 .seg .seg-label{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(243,235,221,.55);margin-bottom:8px;display:block}
 .seg .seg-track{height:2px;background:rgba(243,235,221,.18);position:relative;overflow:hidden}
 .seg .seg-fill{position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left}
+/* hero visuals — dynamic layered compositions (no boring heroes) */
+.hero-visual{position:absolute;top:50%;right:clamp(24px,5vw,90px);transform:translateY(-50%);
+  width:min(440px,38vw);height:540px;z-index:2;pointer-events:none}
+.hcard{position:absolute;background:rgba(20,26,34,.74);border:1px solid rgba(181,138,90,.38);
+  border-radius:14px;padding:18px 20px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 30px 60px rgba(0,0,0,.45);animation:floaty 7s ease-in-out infinite;will-change:transform}
+.hcard:nth-of-type(2){animation-delay:-2.4s}
+.hcard:nth-of-type(3){animation-delay:-4.8s}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.hc-tag{display:inline-block;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;
+  color:var(--gold);border:1px solid rgba(181,138,90,.5);border-radius:999px;padding:6px 12px;margin-bottom:12px}
+.hc-title{display:block;font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(22px,2.4vw,30px);color:var(--cream);line-height:1.15}
+.hc-title em{font-style:italic}
+.hc-foot{display:block;margin-top:10px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(243,235,221,.55)}
+.hcard svg{display:block;width:100%;height:auto;margin:2px 0 4px}
+.hc-code{font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.9;color:rgba(243,235,221,.85);display:block}
+.hc-code .ok{color:#7ee2a8}
+.hc-code .dim{color:rgba(243,235,221,.45)}
+.hchip{position:absolute;padding:10px 18px;border-radius:999px;background:var(--gold);color:var(--navy);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;white-space:nowrap;
+  box-shadow:0 16px 34px rgba(181,138,90,.4);animation:floaty 6s ease-in-out infinite}
+/* scene 1 card placement */
+.hv-1 .hc-plan{top:6px;left:0;width:248px;rotate:-4deg}
+.hv-1 .hc-site{top:158px;right:0;width:228px;rotate:3deg}
+.hv-1 .hc-code{bottom:52px;left:34px;width:250px;rotate:-2deg}
+.hv-1 .hchip{bottom:6px;right:26px;rotate:2deg}
+/* scene 2 — method pipeline */
+.hv-2 .hc-step{left:0;width:300px}
+.hv-2 .hc-step:nth-of-type(1){top:40px;rotate:-3deg}
+.hv-2 .hc-step:nth-of-type(2){top:200px;left:60px;rotate:2deg}
+.hv-2 .hc-step:nth-of-type(3){top:360px;left:10px;rotate:-2deg}
+.hc-num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold);display:block;margin-bottom:8px}
+.hc-name{display:block;font-size:19px;font-weight:700;color:var(--cream);margin-bottom:6px}
+.hc-name em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+.hc-desc{display:block;font-size:12px;letter-spacing:.06em;color:rgba(243,235,221,.6)}
+.hv-2 .hchip{top:8px;right:10px;rotate:3deg}
+/* scene 3 — proof cards (clickable) */
+.hv-3{pointer-events:auto}
+.hv-3 .hc-proof{left:0;width:280px;text-decoration:none;pointer-events:auto;transition:border-color 1.2s var(--ease)}
+.hv-3 .hc-proof:hover{border-color:var(--gold)}
+.hv-3 .hc-proof:nth-of-type(1){top:30px;rotate:-3deg}
+.hv-3 .hc-proof:nth-of-type(2){top:196px;left:70px;rotate:2.5deg}
+.hv-3 .hc-proof:nth-of-type(3){top:362px;left:8px;rotate:-2deg}
+.hv-3 .hchip{bottom:10px;right:16px;rotate:2deg}
 /* marquee */
 .marquee{background:var(--navy);border-top:1px solid rgba(181,138,90,.28);border-bottom:1px solid rgba(181,138,90,.28);
   overflow:hidden;padding:18px 0;position:relative;z-index:2}
@@ -235,6 +280,7 @@ html.reduced .gword{position:relative;opacity:1!important;visibility:visible!imp
 html.reduced .rv{opacity:1;transform:none}
 html.reduced .chapter{min-height:0}
 html.reduced .marquee-track{animation:none}
+html.reduced .hcard,html.reduced .hchip{animation:none}
 html.reduced .foot-cta::before{animation:none}
 @media (prefers-reduced-motion:reduce){.grain{animation:none}*{transition-duration:.01ms!important}}
 @media (max-width:900px){
@@ -247,7 +293,23 @@ html.reduced .foot-cta::before{animation:none}
 @media (max-width:760px){
   #nav{gap:16px;padding:10px 10px 10px 20px;max-width:calc(100vw - 32px)}
   #nav nav{display:none}
-  .scene-copy{bottom:20vh;right:24px}
+  .scene-copy{bottom:auto;top:104px;right:24px}
+  .scene-copy h2{font-size:clamp(34px,9vw,52px)}
+  .hero-visual{top:auto;bottom:70px;right:16px;left:16px;transform:none;width:auto;height:300px}
+  .hv-1 .hc-plan{width:200px}
+  .hv-1 .hc-site{width:190px;top:120px}
+  .hv-1 .hc-code{display:none}
+  .hv-1 .hchip{bottom:0}
+  .hv-2 .hc-step{width:250px}
+  .hv-2 .hc-step:nth-of-type(1){top:0}
+  .hv-2 .hc-step:nth-of-type(2){top:104px;left:30px}
+  .hv-2 .hc-step:nth-of-type(3){top:208px;left:6px}
+  .hv-2 .hchip{display:none}
+  .hv-3 .hc-proof{width:230px}
+  .hv-3 .hc-proof:nth-of-type(1){top:0}
+  .hv-3 .hc-proof:nth-of-type(2){top:100px;left:36px}
+  .hv-3 .hc-proof:nth-of-type(3){top:200px}
+  .hv-3 .hchip{display:none}
   .intro-corner.left{display:none}
   .site-card.small{border-width:4px}
   .foot-grid{grid-template-columns:1fr}
@@ -307,6 +369,35 @@ html.reduced .foot-cta::before{animation:none}
         <a class="ghost" href="#hero" data-next>Keep scrolling <span aria-hidden="true">&darr;</span></a>
       </div>
     </div>
+    <div class="hero-visual hv-1" aria-hidden="true">
+      <div class="hcard hc-plan" data-depth="18">
+        <span class="hc-tag">In development</span>
+        <svg viewBox="0 0 200 140">
+          <g fill="none" stroke="#B58A5A" stroke-width="2.5">
+            <rect x="8" y="8" width="184" height="124"/>
+            <line x1="110" y1="8" x2="110" y2="90"/>
+            <line x1="110" y1="110" x2="110" y2="132"/>
+            <line x1="110" y1="70" x2="192" y2="70"/>
+          </g>
+          <g font-family="monospace" font-size="9" letter-spacing="1.5" fill="#B58A5A" opacity=".8" text-anchor="middle">
+            <text x="59" y="70">LIVING</text>
+            <text x="151" y="42">BED</text>
+            <text x="151" y="105">KITCHEN</text>
+          </g>
+        </svg>
+        <span class="hc-foot">House planner · that listens</span>
+      </div>
+      <div class="hcard hc-site" data-depth="34">
+        <span class="hc-tag">Concept · live</span>
+        <span class="hc-title">Faletti's, <em>reimagined.</em></span>
+        <span class="hc-foot">Cinematic sites · frame by frame</span>
+      </div>
+      <div class="hcard hc-code" data-depth="26">
+        <span class="hc-tag">Method</span>
+        <code class="hc-code"><span class="dim">&gt; brief:</span> 30&times;60 plot, 3 bed<br><span class="dim">&gt; extracting…</span> <span class="ok">✓ 14 requirements</span><br><span class="dim">&gt; plan v3</span> — <span class="ok">constraints hold</span></code>
+      </div>
+      <span class="hchip" data-depth="46">Shipped in public ✓</span>
+    </div>
   </section>
 
   <section class="scene" data-index="1" aria-label="Scene 2">
@@ -319,6 +410,24 @@ html.reduced .foot-cta::before{animation:none}
         <a class="ghost" href="#hero" data-next>Keep scrolling <span aria-hidden="true">&darr;</span></a>
       </div>
     </div>
+    <div class="hero-visual hv-2" aria-hidden="true">
+      <div class="hcard hc-step" data-depth="20">
+        <span class="hc-num">01</span>
+        <span class="hc-name">LLM <em>understands</em></span>
+        <span class="hc-desc">intent · requirements · edits</span>
+      </div>
+      <div class="hcard hc-step" data-depth="34">
+        <span class="hc-num">02</span>
+        <span class="hc-name">Engine <em>calculates</em></span>
+        <span class="hc-desc">geometry · layout · quantities</span>
+      </div>
+      <div class="hcard hc-step" data-depth="26">
+        <span class="hc-num">03</span>
+        <span class="hc-name">Rules <em>enforce</em></span>
+        <span class="hc-desc">bylaws · constraints · cost</span>
+      </div>
+      <span class="hchip" data-depth="46">Never all-AI · by design</span>
+    </div>
   </section>
 
   <section class="scene" data-index="2" aria-label="Scene 3">
@@ -330,6 +439,24 @@ html.reduced .foot-cta::before{animation:none}
         <a class="pill" href="mailto:contact@naeemhck.dev?subject=Hello%20from%20naeemhck.dev">contact@naeemhck.dev <span aria-hidden="true">&nearr;</span></a>
         <a class="ghost" href="#work" data-scroll>The work <span aria-hidden="true">&darr;</span></a>
       </div>
+    </div>
+    <div class="hero-visual hv-3">
+      <a class="hcard hc-proof" data-depth="22" href="https://naeemhck.github.io/falettis-concept/" target="_blank" rel="noopener">
+        <span class="hc-tag">Live</span>
+        <span class="hc-title">Faletti's <em>concept</em></span>
+        <span class="hc-foot">Cinematic hotel site · 4 iterations</span>
+      </a>
+      <a class="hcard hc-proof" data-depth="36" href="https://naeemhck.github.io/portfolio/" target="_blank" rel="noopener">
+        <span class="hc-tag">Live</span>
+        <span class="hc-title">Portfolio <em>2026</em></span>
+        <span class="hc-foot">Video intro · pinned scenes</span>
+      </a>
+      <a class="hcard hc-proof" data-depth="28" href="https://github.com/naeemhck" target="_blank" rel="noopener">
+        <span class="hc-tag">Open</span>
+        <span class="hc-title">GitHub <em>naeemhck</em></span>
+        <span class="hc-foot">Code in the open · always</span>
+      </a>
+      <span class="hchip" data-depth="46" aria-hidden="true">Real work · real links</span>
     </div>
   </section>
 
@@ -675,7 +802,9 @@ html.reduced .foot-cta::before{animation:none}
             duration: 1.4, ease: 'power3.out', stagger: .07 })
         .to(intro, { autoAlpha: 0, duration: 1.6, ease: 'power2.inOut' }, '-=0.9')
         .from('#hero .scene[data-index="0"] .scene-copy > *',
-            { y: 60, autoAlpha: 0, duration: 1.6, ease: 'power3.out', stagger: .1 }, '-=1.1');
+            { y: 60, autoAlpha: 0, duration: 1.6, ease: 'power3.out', stagger: .1 }, '-=1.1')
+        .from('#hero .scene[data-index="0"] .hero-visual',
+            { y: 50, autoAlpha: 0, duration: 1.6, ease: 'power3.out' }, '-=1.2');
     }
   }
   document.getElementById('enterBtn').addEventListener('click', enterSite);
@@ -690,6 +819,8 @@ html.reduced .foot-cta::before{animation:none}
   scenes.forEach(function(s, i){
     if (i === 0) return;
     gsap.set(s.querySelector('.scene-copy'), { autoAlpha: 0 });
+    var hv = s.querySelector('.hero-visual');
+    if (hv) gsap.set(hv, { autoAlpha: 0 });
   });
 
   var pinTl = gsap.timeline({
@@ -714,9 +845,12 @@ html.reduced .foot-cta::before{animation:none}
       var cur = scenes[i], nxt = scenes[i + 1];
       var curCopy = cur.querySelector('.scene-copy');
       var nxtCopy = nxt.querySelector('.scene-copy');
+      var curVis = cur.querySelector('.hero-visual');
+      var nxtVis = nxt.querySelector('.hero-visual');
       var pos = i * SEG;
       pinTl.to(nxt, { autoAlpha: 1, duration: .5, ease: 'none' }, pos);
       if (curCopy) pinTl.to(curCopy, { y: -70, autoAlpha: 0, duration: .5, ease: 'power2.in' }, pos);
+      if (curVis) pinTl.to(curVis, { y: -50, autoAlpha: 0, duration: .5, ease: 'power2.in' }, pos);
       pinTl.to(cur, { autoAlpha: 0, duration: .35, ease: 'none' }, pos + .3);
       if (nxtCopy){
         var l1 = nxtCopy.querySelector('.l1');
@@ -729,6 +863,7 @@ html.reduced .foot-cta::before{animation:none}
         if (chars.length) pinTl.fromTo(chars, { yPercent: 110 }, { yPercent: 0, duration: 1.2, ease: 'power3.out', stagger: .018 }, pos + .45);
         if (ctas.length) pinTl.fromTo(ctas, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power3.out', stagger: .1 }, pos + .7);
       }
+      if (nxtVis) pinTl.fromTo(nxtVis, { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: 1.2, ease: 'power3.out' }, pos + .5);
       sceneTimes.push((pos + 1.9 + (i + 1) * SEG) / 2);
     })(i);
   }
@@ -773,6 +908,25 @@ html.reduced .foot-cta::before{animation:none}
       });
       btn.addEventListener('mouseleave', function(){
         gsap.to(btn, { x: 0, y: 0, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+      });
+    });
+  }
+
+  /* ---------- hero visual parallax (desktop pointers only) ---------- */
+  var heroEl = document.getElementById('hero');
+  if (window.matchMedia('(pointer:fine)').matches && !reduced) {
+    heroEl.addEventListener('mousemove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - .5;
+      var y = (e.clientY - r.top) / r.height - .5;
+      document.querySelectorAll('.hero-visual [data-depth]').forEach(function(el){
+        var d = parseFloat(el.getAttribute('data-depth'));
+        gsap.to(el, { x: x * d, y: y * d, duration: 1.4, ease: 'power3.out', overwrite: 'auto' });
+      });
+    });
+    heroEl.addEventListener('mouseleave', function(){
+      document.querySelectorAll('.hero-visual [data-depth]').forEach(function(el){
+        gsap.to(el, { x: 0, y: 0, duration: 1.6, ease: 'power3.out', overwrite: 'auto' });
       });
     });
   }
